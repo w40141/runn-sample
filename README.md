@@ -1,1 +1,4 @@
 # runn-sample
+
+runnのサンプルプロジェクトです。
+
