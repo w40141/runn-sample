@@ -1,0 +1,17 @@
+desc: レスポンスの内容をチェックしましょう
+runners:
+  req: https://zenn.dev
+vars:
+  username: ${USERNAME:-katzumi}
+  count: 10
+  order: "daily"
+steps:
+  - desc: "指定された件数分、記事一覧を取得します"
+    req:
+      /api/articles?username={{ vars.username }}&count={{ vars.count }}&order={{ vars.order }}:
+        get:
+          body:
+            application/json: null
+    test: |
+      current.res.status == 200
+      && len(current.res.body.articles) == vars.count
